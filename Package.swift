@@ -33,6 +33,8 @@ let package = Package(
                 .linkedFramework("Foundation"),
                 .linkedFramework("MetalKit"),
                 .linkedFramework("MetalPerformanceShaders"),
+                // string
+                .linkedLibrary("c++"),
             ]
         ),
     ],
