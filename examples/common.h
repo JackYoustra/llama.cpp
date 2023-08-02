@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "llama.h"
+#include "llama_header.h"
 
 #include <string>
 #include <vector>
