@@ -24,9 +24,13 @@ let package = Package(
                 .define("GGML_USE_METAL"),
                 .define("GGML_METAL_NDEBUG"),
                 .unsafeFlags(["-fno-objc-arc"]),
+                .headerSearchPath("./"),
+                .headerSearchPath("include/"),
             ],
             cxxSettings: [
                 .unsafeFlags(["-fno-objc-arc"]),
+                .headerSearchPath("./"),
+                .headerSearchPath("include/"),
             ],
             linkerSettings: [
                 .linkedFramework("Accelerate"),
