@@ -16,7 +16,7 @@ let package = Package(
             name: "llama",
             path: ".",
             exclude: ["ggml-metal.metal"],
-            sources: ["ggml.c", "llama.cpp", "ggml-metal.m"],
+            sources: ["ggml.c", "llama.cpp", "ggml-metal.m", "examples/common.cpp"],
             publicHeadersPath: "spm-headers",
             cSettings: [
                 .unsafeFlags(["-Wno-shorten-64-to-32"]),
