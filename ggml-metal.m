@@ -200,11 +200,11 @@ struct ggml_metal_context * ggml_metal_init(int n_cb) {
 
     fprintf(stderr, "%s: recommendedMaxWorkingSetSize = %8.2f MB\n", __func__, ctx->device.recommendedMaxWorkingSetSize / 1024.0 / 1024.0);
     fprintf(stderr, "%s: hasUnifiedMemory             = %s\n",       __func__, ctx->device.hasUnifiedMemory ? "true" : "false");
-    // if (ctx->device.maxTransferRate != 0) {
-    //     fprintf(stderr, "%s: maxTransferRate              = %8.2f MB/s\n", __func__, ctx->device.maxTransferRate / 1024.0 / 1024.0);
-    // } else {
-    //     fprintf(stderr, "%s: maxTransferRate              = built-in GPU\n", __func__);
-    // }
+    if (ctx->device.maxTransferRate != 0) {
+        fprintf(stderr, "%s: maxTransferRate              = %8.2f MB/s\n", __func__, ctx->device.maxTransferRate / 1024.0 / 1024.0);
+    } else {
+        fprintf(stderr, "%s: maxTransferRate              = built-in GPU\n", __func__);
+    }
 
     return ctx;
 }
