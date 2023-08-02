@@ -95,7 +95,7 @@ static NSString * const msl_library_source = @"see metal.metal";
 struct ggml_metal_context * ggml_metal_init(int n_cb) {
     fprintf(stderr, "%s: allocating\n", __func__);
 
-    struct ggml_metal_context * ctx = (struct ggml_metal_context *)malloc(sizeof(struct ggml_metal_context));
+    struct ggml_metal_context * ctx = malloc(sizeof(struct ggml_metal_context));
 
     ctx->n_cb   = n_cb;
     ctx->device = MTLCreateSystemDefaultDevice();
