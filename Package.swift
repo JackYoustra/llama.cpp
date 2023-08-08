@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -28,6 +28,9 @@ let package = Package(
             ],
             cxxSettings: [
                 .unsafeFlags(["-fno-objc-arc"]),
+            ],
+            swiftSettings: [
+                .interoperabilityMode(.Cxx),
             ],
             linkerSettings: [
                 .linkedFramework("Accelerate"),
