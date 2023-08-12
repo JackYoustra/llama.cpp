@@ -126,6 +126,26 @@ struct ggml_metal_context * ggml_metal_init(int n_cb) {
     UNUSED(msl_library_source);
 
     // read the source from "ggml-metal.metal" into a string and use newLibraryWithSource
+    #ifdef SWIFT_PACKAGE
+    // load AOT-compiled metallib
+    // Can't do GGML_QKK_64
+    #ifdef GGML_QKK_64
+    #error "GGML_QKK_64 not supported in Swift Package"
+    #endif
+    {
+        NSError * error = nil;
+
+        NSBundle * bundle = [NSBundle bundleForClass:[GGMLMetalClass class]];
+        NSString * path = [bundle pathForResource:@"ggml-metal" ofType:@"metallib"];
+        fprintf(stderr, "%s: loading '%s'\n", __func__, [path UTF8String]);
+
+        ctx->library = [ctx->device newLibraryWithFile:path error:&error];
+        if (error) {
+            fprintf(stderr, "%s: error: %s\n", __func__, [[error description] UTF8String]);
+            exit(1);
+        }
+    }
+    #else
     {
         NSError * error = nil;
 
@@ -152,6 +172,7 @@ struct ggml_metal_context * ggml_metal_init(int n_cb) {
             exit(1);
         }
     }
+    #endif
 #endif
 
     // load kernels
