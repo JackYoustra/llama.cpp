@@ -18,7 +18,7 @@ let package = Package(
             exclude: ["ggml-metal.metal"],
             sources: ["ggml.c", "llama.cpp", "ggml-metal.m", "k_quants.c", "examples/common.cpp"],
             resources: [
-                .copy("ggml-metal.metal"),
+                .process("ggml-metal.metal"),
             ],
             publicHeadersPath: "spm-headers",
             cSettings: [
