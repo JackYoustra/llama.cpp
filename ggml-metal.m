@@ -135,12 +135,15 @@ struct ggml_metal_context * ggml_metal_init(int n_cb) {
     {
         NSError * error = nil;
 
-        NSBundle * bundle = [NSBundle bundleForClass:[GGMLMetalClass class]];
+        // NSBundle * bundle = [NSBundle bundleForClass:[GGMLMetalClass class]];
         // NSBundle * bundle = [NSBundle mainBundle];
-        NSString * path = [bundle pathForResource:@"default" ofType:@"metallib"];
-        fprintf(stderr, "%s: loading '%s'\n", __func__, [path UTF8String]);
+        // get module bundle
+        // log resource URL of bundle
+        // fprintf(stderr, "%s: bundle resource URL: %s\n", __func__, [[[bundle resourceURL] absoluteString] UTF8String]);
+        // NSString * path = [bundle pathForResource:@"default" ofType:@"metallib"];
+        // fprintf(stderr, "%s: loading '%s'\n", __func__, [path UTF8String]);
 
-        ctx->library = [ctx->device newDefaultLibraryWithBundle: bundle error: &error];
+        ctx->library = [ctx->device newDefaultLibraryWithBundle: SWIFTPM_MODULE_BUNDLE error: &error];
         if (error) {
             fprintf(stderr, "%s: error: %s\n", __func__, [[error description] UTF8String]);
             exit(1);
