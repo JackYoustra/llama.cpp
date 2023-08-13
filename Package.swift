@@ -15,7 +15,11 @@ let package = Package(
         .target(
             name: "llama",
             path: ".",
-            sources: ["ggml-metal.metal", "ggml.c", "llama.cpp", "ggml-metal.m", "k_quants.c", "examples/common.cpp"],
+            exclude: ["ggml-metal.metal"],
+            sources: ["ggml.c", "llama.cpp", "ggml-metal.m", "k_quants.c", "examples/common.cpp"],
+            resources: [
+                .process("ggml-metal.metal"),
+            ],
             publicHeadersPath: "spm-headers",
             cSettings: [
                 .unsafeFlags(["-Wno-shorten-64-to-32"]),
