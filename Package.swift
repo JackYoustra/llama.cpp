@@ -15,7 +15,6 @@ let package = Package(
         .target(
             name: "llama",
             path: ".",
-            exclude: ["ggml-metal.metal"],
             sources: ["ggml.c", "llama.cpp", "ggml-metal.m", "k_quants.c", "examples/common.cpp"],
             resources: [
                 .process("ggml-metal.metal"),
