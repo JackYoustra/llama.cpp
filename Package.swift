@@ -2,6 +2,12 @@
 
 import PackageDescription
 
+let commonFlags = [
+    "-fno-coverage-mapping",
+    "-fno-profile-instr-generate",
+    "-fno-objc-arc",
+]
+
 let package = Package(
     name: "llama",
     platforms: [
@@ -26,10 +32,10 @@ let package = Package(
                 .define("GGML_USE_METAL"),
                 .define("GGML_METAL_NDEBUG"),
                 .define("GGML_USE_K_QUANTS"),
-                .unsafeFlags(["-fno-objc-arc"]),
+                .unsafeFlags(commonFlags),
             ],
             cxxSettings: [
-                .unsafeFlags(["-fno-objc-arc"]),
+                .unsafeFlags(commonFlags),
             ],
             swiftSettings: [
                 .interoperabilityMode(.Cxx),
