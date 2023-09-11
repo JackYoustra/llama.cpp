@@ -38,7 +38,7 @@ let package = Package(
                 .unsafeFlags(commonFlags),
             ],
             swiftSettings: [
-                // .interoperabilityMode(.Cxx),
+                .interoperabilityMode(.Cxx),
             ],
             linkerSettings: [
                 .linkedFramework("Accelerate"),
